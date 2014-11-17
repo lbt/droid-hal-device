@@ -1,0 +1,11 @@
+# Feel free to disable non-critical HA parts during devel by commenting out
+# Generated in hadk by executing: cd $ANDROID_ROOT; rpm/helpers/add_new_device.sh
+
+Description: Pattern with packages for baytrail_generic configurations
+Name: jolla-configuration-baytrail_generic
+Requires:
+- pattern:jolla-hw-adaptation-baytrail_generic
+- pattern:jolla-configuration-sfe
+
+Summary: Jolla Configuration baytrail_generic
+
