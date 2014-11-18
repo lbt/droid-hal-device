@@ -259,7 +259,7 @@ echo _target_cpu is %{_target_cpu}
 %if 0%{?_obs_build_project:1}
 # Hadk style build of android on OBS 
 echo Running droid build in HABUILD_SDK
-ubu-chroot -r /srv/mer/sdks/ubu "cd %android_root; source build/envsetup.sh; lunch %{device}%{?device_variant}; rm -f .repo/local_manifests/roomservice.xml; make %{?_smp_mflags} %{?hadk_make_target}%{!?hadk_make_target:hybris-hal}"
+ubu-chroot -r /srv/mer/sdks/ubu "cd %android_root; source build/envsetup.sh; lunch %{device}%{?device_variant}; rm -f .repo/local_manifests/roomservice.xml; make %{?_smp_mflags} %{?hadk_make_target}%{!?hadk_make_target:hybris-hal} apply-permissions"
 %endif
 
 # Make a tmp location for built installables
@@ -425,7 +425,7 @@ install -m 0744 rpm/dsp/preinit/* $RPM_BUILD_ROOT%{_libdir}/startup/preinit/
 ln -s /bin/false $RPM_BUILD_ROOT%{_libdir}/startup/preinit/is_total_erase_supported
 
 # droid permission fixer
-install -D tmp/rpmsrc/apply-permissions $RPM_BUILD_ROOT%{_libdir}/droid/apply-permissions
+install -D out/target/product/%{device}/obj/EXECUTABLES/apply-permissions_intermediates/apply-permissions $RPM_BUILD_ROOT%{_libdir}/droid/apply-permissions
 
 # Remove cruft
 rm -f $RPM_BUILD_ROOT/fstab.*
